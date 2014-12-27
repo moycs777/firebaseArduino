@@ -1,0 +1,16 @@
+{
+  "name": "firebaseArduino",
+  "version": "1.0.0",
+  "description": "",
+  "main": "f.js",
+  "dependencies": {
+    "firebase": "^2.0.6",
+    "johnny-five": "^0.8.36"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "moises",
+  "license": "ISC"
+}
