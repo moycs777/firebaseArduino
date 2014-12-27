@@ -10,7 +10,16 @@
 
 var myFirebaseRef = new Firebase('https://moy.firebaseio.com/');
 
-    
+    myFirebaseRef.set({
+      led1: "off",
+      led2: "off",
+      led3: "off",
+      location: {
+        city: "Ciudad Bolivar",
+        state: "Bolivar",
+        zip: 8001
+      }
+    });
     
     $(document).ready(function () {
       $("#btn_enviar").click(function(){
@@ -18,10 +27,10 @@ var myFirebaseRef = new Firebase('https://moy.firebaseio.com/');
     
 
             myFirebaseRef.set({
-              led: "on desde html",
+              led1: "on",
+              author: "web"
               
-              
-            });
+          });
 
       });
 
@@ -30,7 +39,32 @@ var myFirebaseRef = new Firebase('https://moy.firebaseio.com/');
     
 
             myFirebaseRef.set({
-              led: "off desde html",
+              led1: "off",
+              author: "web"
+              
+              
+            });
+
+      });
+
+      $("#btn_enviar3").click(function(){
+        
+    
+
+            myFirebaseRef.set({
+              led2: "on",
+              
+              
+            });
+
+      });
+
+       $("#btn_enviar4").click(function(){
+        
+    
+
+            myFirebaseRef.set({
+              led2: "off",
               
               
             });
@@ -46,6 +80,9 @@ var myFirebaseRef = new Firebase('https://moy.firebaseio.com/');
 <body>
     <input type="button" id="btn_enviar" value="Led On" style="font-size:9pt;">
     <input type="button" id="btn_enviar2" value="Led Off" style="font-size:9pt;">
+    <br/>
+    <input type="button" id="btn_enviar3" value="Led 2 On" style="font-size:9pt;">
+    <input type="button" id="btn_enviar4" value="Led 2 Off" style="font-size:9pt;">
 </body>
 
 
