@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+<script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
+    
+<script type="text/javascript">
+
+var myFirebaseRef = new Firebase('https://moy.firebaseio.com/');
+
+    
+    
+    $(document).ready(function () {
+      $("#btn_enviar").click(function(){
+        
+    
+
+            myFirebaseRef.set({
+              led: "on desde html",
+              
+              
+            });
+
+      });
+
+      $("#btn_enviar2").click(function(){
+        
+    
+
+            myFirebaseRef.set({
+              led: "off desde html",
+              
+              
+            });
+
+      });
+
+    });
+
+
+    
+</script> 
+</head>
+<body>
+    <input type="button" id="btn_enviar" value="Led On" style="font-size:9pt;">
+    <input type="button" id="btn_enviar2" value="Led Off" style="font-size:9pt;">
+</body>
+
+
+
+
+
+
+
