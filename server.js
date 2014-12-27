@@ -2,28 +2,30 @@ var five = require("johnny-five"),
   board, led;
 
 var Firebase = require('firebase');
+
 var myFirebaseRef = new Firebase('https://moy.firebaseio.com/');
 
 myFirebaseRef.set({
               led: "ON desde node",
-              
-              
-            });
+});
 
-var ledStatus = 'led.shown';
 
 //myRootRef.set( ledStatus);
 
-console.log('running on ');
-
 console.log(myFirebaseRef+' ok');
 
+myFirebaseRef.child("led").on("value", function(snapshot) {
+  console.log(snapshot.val());  // Alerts "San Francisco"
+});
 
-board = new five.Board();
+//Jonny-five section
+    // or "./lib/johnny-five" when running from the source
+    board = new five.Board();
 
 board.on("ready", function() {
 
-  // Create a standard `led` hardware instance
+  (new five.Led(13));
+
   led = new five.Led({
     pin: 13
   });
@@ -31,21 +33,13 @@ board.on("ready", function() {
   // "on" turns the led _on_
   led.on();
 
-  // "off" turns the led _off_
-  led.off();
+   myFirebaseRef.child("led").on("value", function(snap) {
+    if(snap.val() == "on desde html") {
+      led.on();
+    } else {
+      led.off();
+    }
+  })
 
-  led.on();
-  
-
-  // Turn the led back on after 3 seconds (shown in ms)
-  this.wait(3000, function() {
-
-    
-    led.off();
-
-  });
 });
 
-
-
-console.log('end');
