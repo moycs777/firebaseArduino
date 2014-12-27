@@ -2,6 +2,8 @@
 <html>
 
 <head>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
@@ -10,22 +12,24 @@
 
 var myFirebaseRef = new Firebase('https://moy.firebaseio.com/');
 
-    myFirebaseRef.set({
-      led1: "off",
-      led2: "off",
-      led3: "off",
-      location: {
-        city: "Ciudad Bolivar",
-        state: "Bolivar",
-        zip: 8001
-      }
-    });
-    
+    // myFirebaseRef.set({
+    //   led1: "off",
+    //   led2: "off",
+    //   led3: "off",
+    //   location: {
+    //     city: "Ciudad Bolivar",
+    //     state: "Bolivar",
+    //     zip: 8001
+    //   }
+    // });
+ var estatusJs ="";
+
     $(document).ready(function () {
       $("#btn_enviar").click(function(){
-        
-    
 
+            estatusJs1 = "on";
+            document.getElementById('contenido1').innerHTML = estatusJs1;       
+    
             myFirebaseRef.set({
               led1: "on",
               author: "web"
@@ -35,9 +39,10 @@ var myFirebaseRef = new Firebase('https://moy.firebaseio.com/');
       });
 
       $("#btn_enviar2").click(function(){
-        
-    
 
+            estatusJs1 = "off";
+            document.getElementById('contenido1').innerHTML = estatusJs1; 
+        
             myFirebaseRef.set({
               led1: "off",
               author: "web"
@@ -48,42 +53,116 @@ var myFirebaseRef = new Firebase('https://moy.firebaseio.com/');
       });
 
       $("#btn_enviar3").click(function(){
-        
-    
+
+            estatusJs2 = "on";
+            document.getElementById('contenido2').innerHTML = estatusJs2;           
 
             myFirebaseRef.set({
-              led2: "on",
-              
+              led2: "on",              
               
             });
 
       });
 
        $("#btn_enviar4").click(function(){
-        
-    
+
+            estatusJs2 = "off";
+            document.getElementById('contenido2').innerHTML = estatusJs2;             
 
             myFirebaseRef.set({
-              led2: "off",
-              
+              led2: "off",              
               
             });
 
       });
 
+
+       $("#btn_enviar5").click(function(){
+        
+            estatusJs3 = "on";
+            document.getElementById('contenido3').innerHTML = estatusJs3; 
+
+            myFirebaseRef.set({
+              led3: "on",              
+              
+            });
+
+      });
+
+       $("#btn_enviar6").click(function(){
+        
+            estatusJs3 = "off";
+            document.getElementById('contenido3').innerHTML = estatusJs3; 
+
+            myFirebaseRef.set({
+              led3: "off",              
+              
+            });
+
+      });   
+
     });
 
+
+
+    var estatus = myFirebaseRef.child("led1").on("value", function(snapshot) {
+         console.log(snapshot.val());  // Alerts "San Francisco"
+    });
+
+    var estatus2 = myFirebaseRef.child("led2").on("value", function(snapshot) {
+         console.log(snapshot.val());  // Alerts "San Francisco"
+    });
+
+    var estatus3 = myFirebaseRef.child("led3").on("value", function(snapshot) {
+         console.log(snapshot.val());  // Alerts "San Francisco"
+    });
 
     
 </script> 
 </head>
 <body>
-    <input type="button" id="btn_enviar" value="Led On" style="font-size:9pt;">
-    <input type="button" id="btn_enviar2" value="Led Off" style="font-size:9pt;">
+    <br/><br/><br/><br/>
+
+    <div id="contenido">Estado de los Leds</div>
     <br/>
-    <input type="button" id="btn_enviar3" value="Led 2 On" style="font-size:9pt;">
-    <input type="button" id="btn_enviar4" value="Led 2 Off" style="font-size:9pt;">
+    <table style="width:30%">
+      <tr>
+        <td><input type="button" id="btn_enviar" value="Led 1 On" style="font-size:9pt;"></td>
+        <td><input type="button" id="btn_enviar2" value="Led 1 Off" style="font-size:9pt;"></td>    
+        <td id="contenido1">..</td>
+      </tr>
+      <tr>
+        <td><input type="button" id="btn_enviar3" value="Led 2 On" style="font-size:9pt;"></td>
+        <td><input type="button" id="btn_enviar4" value="Led 2 Off" style="font-size:9pt;"></td>    
+        <td id="contenido2">..</td>
+      </tr>
+      <tr>
+        <td><input type="button" id="btn_enviar5" value="Led 3 On" style="font-size:9pt;"></td>
+        <td><input type="button" id="btn_enviar6" value="Led 3 Off" style="font-size:9pt;"></td>    
+        <td id="contenido3">..</td>
+      </tr>
+    </table>
+
+    <br/><br/><br/><br/>
+    
+    
+    <br/>
+    
+    
+    <br/>
+    
+    
+
+
+
+
 </body>
+
+
+
+
+
+
 
 
 
